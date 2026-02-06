@@ -15,21 +15,22 @@ const Home = () => {
     const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
-        // Speak welcome message on mount with time-based greeting
-        const hour = new Date().getHours();
-        let greeting = '';
-        if (hour < 12) greeting = 'Good Morning';
-        else if (hour < 18) greeting = 'Good Afternoon';
-        else greeting = 'Good Evening';
+        const handleInteraction = () => {
+            // Check if welcome message has already been spoken in this session
+            const hasSpokenWelcome = sessionStorage.getItem('hasSpokenWelcome');
+            if (!hasSpokenWelcome) {
+                const hour = new Date().getHours();
+                let greeting = (hour < 12) ? 'Good Morning' : (hour < 18) ? 'Good Afternoon' : 'Good Evening';
+                const welcomeMessage = `${greeting}. My name is Keran. Welcome to the voice-enabled data collection with an AI-powered government and private scheme recommendation system. Please click Start Submission to begin your voice-guided data entry session.`;
 
-        const welcomeMessage = `${greeting}. My name is Keran. Welcome to the voice-enabled data collection with an AI-powered government and private scheme  recommendation system. Please click Start Submission to begin your voice-guided data entry session.`;
+                speak(welcomeMessage);
+                sessionStorage.setItem('hasSpokenWelcome', 'true');
+            }
+        };
 
-        // Check if welcome message has already been spoken in this session
-        const hasSpokenWelcome = sessionStorage.getItem('hasSpokenWelcome');
-        if (!hasSpokenWelcome) {
-            speak(welcomeMessage);
-            sessionStorage.setItem('hasSpokenWelcome', 'true');
-        }
+        // Add interaction listeners
+        document.addEventListener('click', handleInteraction, { once: true });
+        document.addEventListener('keydown', handleInteraction, { once: true });
 
         // Fetch Reviews for landing page display
         const fetchReviews = async () => {
@@ -45,6 +46,10 @@ const Home = () => {
         };
         fetchReviews();
 
+        return () => {
+            document.removeEventListener('click', handleInteraction);
+            document.removeEventListener('keydown', handleInteraction);
+        };
     }, [speak]);
 
     const handleStartSubmission = () => {
