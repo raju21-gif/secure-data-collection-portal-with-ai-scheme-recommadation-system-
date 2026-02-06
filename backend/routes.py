@@ -15,6 +15,23 @@ router = APIRouter()
 UPLOAD_DIR = "uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
+@router.get("/health")
+async def health_check():
+    from database import MONGO_URL
+    # Mask password for security
+    masked_url = MONGO_URL.split("@")[-1] if "@" in MONGO_URL else "Local/Other"
+    try:
+        users_collection.count_documents({})
+        status = "Connected"
+    except Exception as e:
+        status = f"Failed: {str(e)}"
+    
+    return {
+        "status": status,
+        "database_host": masked_url,
+        "collection": users_collection.name
+    }
+
 @router.post("/register")
 async def register(
     name: str = Form(...),
