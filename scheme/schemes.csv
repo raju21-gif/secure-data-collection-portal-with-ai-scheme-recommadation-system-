@@ -1,0 +1,103 @@
+scheme_id,scheme_name,scheme_type,description,official_link
+1,Pradhan Mantri Jan Dhan Yojana,Government,Zero balance bank accounts for financial inclusion,https://pmjdy.gov.in
+2,Ayushman Bharat Yojana,Government,Health insurance up to 5 lakh per family,https://pmjay.gov.in
+3,PM Kisan Samman Nidhi,Government,Income support for farmers,https://pmkisan.gov.in
+4,PM Awas Yojana Rural,Government,Housing assistance for rural poor,https://pmayg.nic.in
+5,PM Awas Yojana Urban,Government,Affordable housing for urban poor,https://pmaymis.gov.in
+6,PM Ujjwala Yojana,Government,Free LPG gas connections,https://www.pmuy.gov.in
+7,Atal Pension Yojana,Government,Pension scheme for unorganized workers,https://www.npscra.nsdl.co.in
+8,MGNREGA,Government,Guaranteed wage employment in rural areas,https://nrega.nic.in
+9,PM Kaushal Vikas Yojana,Government,Skill development for youth,https://www.pmkvyofficial.org
+10,MUDRA Loan Scheme,Government,Loans for micro businesses,https://www.mudra.org.in
+11,Beti Bachao Beti Padhao,Government,Girl child welfare and education,https://wcd.nic.in
+12,PM Fasal Bima Yojana,Government,Crop insurance for farmers,https://pmfby.gov.in
+13,National Old Age Pension Scheme,Government,Pension for senior citizens,https://nsap.nic.in
+14,National Disability Pension Scheme,Government,Pension for persons with disabilities,https://nsap.nic.in
+15,National Widow Pension Scheme,Government,Pension assistance for widows,https://nsap.nic.in
+16,Skill India Mission,Government,National skill development program,https://skillindia.gov.in
+17,Startup India,Government,Support for startups,https://www.startupindia.gov.in
+18,Sukanya Samriddhi Yojana,Government,Savings scheme for girl child,https://www.india.gov.in
+19,Digital India Programme,Government,Digital services and infrastructure,https://digitalindia.gov.in
+20,Jal Jeevan Mission,Government,Tap water connections to households,https://jaljeevanmission.gov.in
+21,Swachh Bharat Mission,Government,Sanitation and cleanliness drive,https://swachhbharatmission.gov.in
+22,PM SVANidhi,Government,Loan support for street vendors,https://pmsvanidhi.mohua.gov.in
+23,E-Shram Portal,Government,Social security for unorganized workers,https://eshram.gov.in
+24,National Scholarship Portal,Government,Scholarships for students,https://scholarships.gov.in
+25,Mid Day Meal Scheme,Government,Free meals for school students,https://www.education.gov.in
+26,National Health Mission,Government,Public healthcare strengthening,https://nhm.gov.in
+27,National Pension System,Government,Retirement savings scheme,https://www.npscra.nsdl.co.in
+28,PM Vishwakarma Yojana,Government,Support for artisans and craftsmen,https://www.myscheme.gov.in
+29,One Nation One Ration Card,Government,Portable ration benefits,https://www.myscheme.gov.in
+30,Accessible India Campaign,Government,Accessibility for persons with disabilities,https://www.india.gov.in
+
+31,Tata Scholarship Program,Private,Scholarships for underprivileged students,https://www.tatatrusts.org
+32,Reliance Foundation Scholarship,Private,Merit based education scholarship,https://www.reliancefoundation.org
+33,Infosys Foundation Education Program,Private,Education support initiatives,https://www.infosysfoundation.org
+34,Wipro Cares Education Scheme,Private,CSR based education support,https://www.wipro.com
+35,HDFC Parivartan CSR,Private,Community and education development,https://www.hdfcbank.com
+36,ICICI Foundation Education Initiative,Private,Skill and education development,https://www.icicifoundation.org
+37,SBI Student Loan Scheme,Private,Education loans for students,https://sbi.co.in
+38,Axis Bank Education Loan,Private,Financial support for higher studies,https://www.axisbank.com
+39,LIC Arogya Rakshak Policy,Private,Affordable health insurance,https://licindia.in
+40,Star Health Insurance Scheme,Private,Private health insurance coverage,https://www.starhealth.in
+41,Apollo Aarogyam Scheme,Private,Affordable healthcare services,https://www.apollohospitals.com
+42,Bajaj Allianz Health Guard,Private,Comprehensive health insurance,https://www.bajajallianz.com
+43,Tata AIG Health Insurance,Private,Medical insurance support,https://www.tataaig.com
+44,Max Life Insurance Plan,Private,Life insurance protection,https://www.maxlifeinsurance.com
+45,Google Career Certificates India,Private,Online job skill certification,https://grow.google
+46,Microsoft Skill India Initiative,Private,Digital and IT skill training,https://www.microsoft.com
+47,Amazon Future Engineer India,Private,STEM education for students,https://www.amazonfutureengineer.com
+48,Flipkart Samarth Program,Private,Support for small sellers,https://seller.flipkart.com
+49,Paytm Skill Development Program,Private,Digital skills and employment support,https://paytm.com
+50,PhonePe Financial Literacy Program,Private,Financial awareness education,https://www.phonepe.com
+51,Jio Digital Literacy Program,Private,Digital inclusion initiative,https://www.jio.com
+52,Byjus Scholarship Program,Private,Merit based scholarships,https://byjus.com
+53,Unacademy Scholarship Scheme,Private,Free learning support,https://unacademy.com
+54,TCS Ignite Program,Private,Training for engineering graduates,https://www.tcs.com
+55,Zoho Schools Program,Private,Software career education,https://www.zohoschools.com
+56,Infosys Springboard,Private,Free digital learning platform,https://infyspringboard.com
+57,Google Digital Garage India,Private,Digital marketing skills training,https://learndigital.withgoogle.com
+58,Meta Blueprint India,Private,Online business skills training,https://www.facebook.com/business/learn
+59,NASSCOM FutureSkills Prime,Private,Industry relevant digital skills,https://futureskillsprime.in
+60,Udemy India Scholarship,Private,Free professional courses,https://www.udemy.com
+
+61,Coursera Financial Aid India,Private,Online course fee support,https://www.coursera.org
+62,edX Learning Support India,Private,University level online education,https://www.edx.org
+63,NSDC Private Skill Partnership,Private,Skill development programs,https://nsdcindia.org
+64,ITC CSR Rural Development,Private,Rural livelihood improvement,https://www.itcportal.com
+65,Mahindra Pride Classroom,Private,Employability training,https://www.mahindra.com
+66,Aditya Birla Education Trust,Private,Education support initiatives,https://www.adityabirla.com
+67,Godrej Skill Development Program,Private,Skill training for employment,https://www.godrej.com
+68,TVS CSR Education Scheme,Private,Education and training support,https://www.tvsmotor.com
+69,ONGC CSR Health Program,Private,Healthcare assistance,https://ongcindia.com
+70,IOCL CSR Skill Program,Private,Skill development support,https://iocl.com
+71,NTPC CSR Education Scheme,Private,Education infrastructure support,https://ntpc.co.in
+72,PowerGrid CSR Health Scheme,Private,Health and sanitation projects,https://www.powergridindia.com
+73,Adani Foundation Education Program,Private,Education and livelihood support,https://www.adanifoundation.org
+74,JSW Foundation Skill Program,Private,Skill and education initiatives,https://www.jswfoundation.in
+75,Azim Premji Foundation Education Program,Private,School education improvement,https://azimpremjifoundation.org
+76,Smile Foundation Education Scheme,Private,Education for underprivileged children,https://www.smilefoundationindia.org
+77,HelpAge India Elder Support Program,Private,Support for senior citizens,https://www.helpageindia.org
+78,Teach For India Fellowship,Private,Educational leadership program,https://www.teachforindia.org
+79,CRY Child Education Support,Private,Child rights and education,https://www.cry.org
+80,Pratham Education Foundation Program,Private,Primary education improvement,https://www.pratham.org
+81,Akshaya Patra Foundation Program,Private,Mid day meals for students,https://www.akshayapatra.org
+82,Goonj Rural Development Program,Private,Clothing and rural development,https://goonj.org
+83,SEWA Women Empowerment Program,Private,Self employment for women,https://www.sewa.org
+84,Barefoot College Program,Private,Skill training for rural women,https://www.barefootcollege.org
+85,Digital Empowerment Foundation Program,Private,Digital inclusion initiatives,https://www.defindia.org
+86,GiveIndia Education Support,Private,Crowdfunded education support,https://www.giveindia.org
+87,Ketto Social Impact Program,Private,Crowdfunded welfare support,https://www.ketto.org
+88,Milaap Social Welfare Program,Private,Medical and education crowdfunding,https://www.milaap.org
+89,Impact Guru Health Support,Private,Medical crowdfunding assistance,https://www.impactguru.com
+90,Save the Children India Program,Private,Child welfare and education,https://www.savethechildren.in
+91,CARE India Livelihood Program,Private,Livelihood and women empowerment,https://www.careindia.org
+92,Oxfam India Development Program,Private,Poverty and inequality reduction,https://www.oxfamindia.org
+93,World Vision India Program,Private,Child development and education,https://www.worldvision.in
+94,Rotary India Education Program,Private,Education and health initiatives,https://rotaryindia.org
+95,Lions Clubs India Welfare Program,Private,Community welfare activities,https://www.lionsclubs.org
+96,Indian Red Cross Society Program,Private,Disaster and health support,https://www.indianredcross.org
+97,UNICEF India Education Program,Private,Child education and health,https://www.unicef.org/india
+98,WHO India Health Support,Private,Public health awareness,https://www.who.int
+99,UNDP India Livelihood Program,Private,Sustainable development initiatives,https://www.undp.org
+100,UNESCO India Education Program,Private,Education and cultural development,https://www.unesco.org

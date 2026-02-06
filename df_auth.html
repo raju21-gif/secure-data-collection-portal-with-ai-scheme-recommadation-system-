@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication System DFD | Secure Data Portal</title>
+    <!-- Mermaid JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.0/mermaid.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #64748b;
+            --bg-body: #f1f5f9;
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border: #e2e8f0;
+
+            /* Diagram Colors */
+            --color-actor: #e0f2fe;
+            --stroke-actor: #0284c7;
+            --color-external: #ffedd5;
+            --stroke-external: #ea580c;
+            --color-process: #dcfce7;
+            --stroke-process: #16a34a;
+            --color-store: #fef3c7;
+            --stroke-store: #d97706;
+            --color-ai: #f3e8ff;
+            --stroke-ai: #9333ea;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            padding: 1.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        p.subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .diagram-container {
+            background: var(--bg-card);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            border: 1px solid var(--border);
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: auto;
+        }
+
+        .mermaid {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .print-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .print-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        @media print {
+            @page {
+                size: A4 landscape;
+                margin: 0.5cm;
+            }
+
+            body {
+                background: white;
+                margin: 0;
+                padding: 0;
+                width: 100vw;
+                height: 100vh;
+                overflow: hidden;
+            }
+
+            header,
+            .print-btn-container {
+                display: none !important;
+            }
+
+            main,
+            .diagram-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0;
+                margin: 0;
+                width: 100%;
+                height: 100%;
+                box-shadow: none;
+                border: none;
+            }
+
+            .mermaid svg {
+                width: 100% !important;
+                height: 100% !important;
+                max-width: 297mm !important;
+                max-height: 210mm !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div
+            style="display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto;">
+            <div>
+                <h1>Authentication System</h1>
+                <p class="subtitle">Secure Login, Registration & Token Management Data Flow</p>
+            </div>
+            <div class="print-btn-container">
+                <button onclick="window.print()" class="print-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        viewBox="0 0 16 16">
+                        <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1" />
+                        <path
+                            d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1" />
+                    </svg>
+                    Print / Save PDF
+                </button>
+                <button onclick="downloadPDF()" class="print-btn"
+                    style="margin-left: 10px; background-color: var(--secondary);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
+                        <path
+                            d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 1-.708.708l3 3z" />
+                    </svg>
+                    Download PDF
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="diagram-container">
+            <div class="mermaid">
+                graph TD
+                %% Styles
+                classDef actor fill:#e0f2fe,stroke:#0284c7,stroke-width:2px,color:#1e293b;
+                classDef process fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#1e293b,rx:5,ry:5;
+                classDef store fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#1e293b;
+
+                User["👤 User"]:::actor
+                UserDB[("🗄️ User DB")]:::store
+
+                subgraph Auth_System [Authentication Module]
+                direction TB
+                Login["🔐 Login / Register"]:::process
+                JWT["🔑 Token Gen"]:::process
+                end
+
+                User -->|Credentials| Login
+                Login <-->|Verify/Create| UserDB
+                    Login -->|Issue Token| JWT
+                    JWT -->|Auth Token| User
+            </div>
+        </section>
+    </main>
+
+    <script>
+        mermaid.initialize({ startOnLoad: true, theme: 'base', themeVariables: { fontFamily: 'Inter', fontSize: '16px' } });
+
+        function downloadPDF() {
+            const originalElement = document.querySelector('.diagram-container');
+            const element = originalElement.cloneNode(true);
+
+            // Optimization for A4 Landscape
+            element.style.width = '1100px';
+            element.style.height = '750px';
+            element.style.position = 'fixed'; element.style.top = '-9999px'; element.style.zIndex = '-100';
+            element.style.display = 'flex'; element.style.justifyContent = 'center'; element.style.alignItems = 'center';
+            element.style.background = 'white';
+
+            const svg = element.querySelector('svg');
+            if (svg) { svg.style.width = '100%'; svg.style.height = '100%'; svg.style.maxWidth = 'none'; }
+
+            document.body.appendChild(element);
+
+            const opt = {
+                margin: 5,
+                filename: 'Authentication_System_DFD.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true, windowWidth: 1125, windowHeight: 800 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
+            };
+
+            html2pdf().set(opt).from(element).save().then(() => document.body.removeChild(element));
+        }
+    </script>
+</body>
+
+</html>

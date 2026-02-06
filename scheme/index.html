@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI Scheme Recommendation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #050505, #0c0c0c);
+    color: #ffffff;
+}
+
+.main-container {
+    display: flex;
+    gap: 30px;
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 20px;
+}
+
+.glass {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px);
+    border-radius: 18px;
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.form-container { flex: 1; }
+.result-container { flex: 1; }
+
+label {
+    margin-top: 15px;
+    display: block;
+}
+
+input, select, textarea, button {
+    width: 100%;
+    margin-top: 6px;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+}
+
+textarea {
+    resize: none;
+}
+
+button {
+    margin-top: 20px;
+    background: linear-gradient(135deg, #6f42c1, #4e73df);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.scheme {
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+}
+
+.scheme a {
+    color: #4da3ff;
+    text-decoration: none;
+}
+
+@media(max-width:768px){
+    .main-container{flex-direction:column;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="main-container">
+
+<!-- LEFT FORM -->
+<div class="form-container glass">
+<h2>User Details</h2>
+
+<label>Name</label>
+<input id="name" placeholder="Enter your name">
+
+<label>Age</label>
+<input id="age" type="number">
+
+<label>Occupation</label>
+<input id="occupation" placeholder="farmer / student / senior">
+
+<label>Health</label>
+<select id="health">
+<option value="no">Normal</option>
+<option value="yes">Disabled / Chronic</option>
+</select>
+
+<label>Income</label>
+<input id="income" type="number">
+
+<label>Need</label>
+<textarea id="need" rows="3" placeholder="Financial support / Education / Health"></textarea>
+
+<button onclick="submitForm()">Check Eligibility</button>
+</div>
+
+<!-- RIGHT RESULT -->
+<div class="result-container glass">
+<h2>AI Recommendation</h2>
+<div id="result">Waiting for input...</div>
+</div>
+
+</div>
+
+<script>
+async function submitForm() {
+
+    const name = document.getElementById("name").value.trim();
+    const age = Number(document.getElementById("age").value);
+    const occupation = document.getElementById("occupation").value.trim();
+    const income = Number(document.getElementById("income").value);
+    const health = document.getElementById("health").value;
+    const need = document.getElementById("need").value.trim();
+
+    if (!name || !age || !occupation || !income || !need) {
+        alert("Please fill all fields");
+        return;
+    }
+
+    document.getElementById("result").innerHTML = "⏳ AI analyzing your profile...";
+
+    try {
+        const response = await fetch("http://127.0.0.1:8000/recommend", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                first_name: name,
+                age: age,
+                occupation: occupation,
+                income: income,
+                health: health,
+                need: need
+            })
+        });
+
+        const data = await response.json();
+
+        let html = `<b>Hello ${data.user},</b><br><br>`;
+        html += `<b>Top Recommended Schemes:</b><br><br>`;
+
+        data.recommendations.forEach((s, i) => {
+            html += `
+            <div class="scheme">
+                <b>${i+1}. ${s.scheme_name}</b><br>
+                ${s.description}<br>
+                <small>${s.benefits || ""}</small><br>
+                <a href="${s.official_link}" target="_blank">Official Link</a>
+            </div>`;
+        });
+
+        document.getElementById("result").innerHTML = html;
+
+    } catch (error) {
+        document.getElementById("result").innerHTML =
+            "<span style='color:red'>❌ Backend not running</span>";
+    }
+}
+</script>
+
+</body>
+</html>
