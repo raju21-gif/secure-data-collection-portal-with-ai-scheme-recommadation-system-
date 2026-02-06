@@ -6,4 +6,6 @@ requests
 pymongo
 pypdf
 twilio
+passlib
+bcrypt
 python-multipart
