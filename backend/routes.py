@@ -51,7 +51,8 @@ async def login(
     username: str = Form(...), # Frontend might send 'username' key for email
     password: str = Form(...)
 ):
-    user = users_collection.find_one({"email": username}) # We treat username as email
+    # Case-insensitive search
+    user = users_collection.find_one({"email": {"$regex": f"^{username}$", "$options": "i"}})
     if not user or not verify_password(password, user["password"]):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
