@@ -43,20 +43,21 @@ async def register(
         safe_filename = "default.png"
     
     hashed_password = get_password_hash(password)
-    new_user = {
-        "name": name,
-        "email": email,
-        "password": hashed_password,
-        "image_url": f"/uploads/{safe_filename}"
-    }
-    users_collection.insert_one(new_user)
+    try:
+        new_user = {
+            "name": name,
+            "email": email,
+            "password": hashed_password,
+            "image_url": f"/uploads/{safe_filename}"
+        }
+        users_collection.insert_one(new_user)
+        print(f"Successfully registered user: {email}")
+    except Exception as e:
+        print(f"DATABASE ERROR during registration: {e}")
+        raise HTTPException(status_code=500, detail=f"Database error: {str(e)}")
     
     # Return user info without password
-    return {
-        "name": new_user["name"],
-        "email": new_user["email"],
-        "image_url": new_user["image_url"]
-    }
+    return {"message": "User registered successfully", "user": {"name": name, "email": email}}
 
 @router.post("/login")
 async def login(
