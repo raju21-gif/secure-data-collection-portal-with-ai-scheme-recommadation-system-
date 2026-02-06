@@ -68,9 +68,7 @@ const Login = () => {
 
         try {
             const response = await axios.post(
-                `${API_URL}/login`,
-                formDataToSend,
-                { headers: { 'Content-Type': 'multipart/form-data' } }
+                formDataToSend
             );
 
             const user = response.data.user;

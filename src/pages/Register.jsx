@@ -89,9 +89,7 @@ const Register = () => {
         formDataToSend.append('image', image);
 
         try {
-            const response = await axios.post(`${API_URL}/register`, formDataToSend, {
-                headers: { 'Content-Type': 'multipart/form-data' }
-            });
+            const response = await axios.post(`${API_URL}/register`, formDataToSend);
 
             setMessage({ type: 'success', text: response.data.message || 'Registration successful!' });
             setTimeout(() => navigate('/login'), 2000);

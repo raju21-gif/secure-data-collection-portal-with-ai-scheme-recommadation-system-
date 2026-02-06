@@ -26,17 +26,28 @@ async def register(
     if users_collection.find_one({"email": email}):
         raise HTTPException(status_code=400, detail="Email already registered")
     
-    # Save Image
-    image_path = f"{UPLOAD_DIR}/{image.filename}"
-    with open(image_path, "wb") as buffer:
-        shutil.copyfileobj(image.file, buffer)
+    # Save Image safely
+    safe_filename = "".join([c for c in image.filename if c.isalnum() or c in "._-"]).strip()
+    if not safe_filename:
+        safe_filename = f"user_{email.split('@')[0]}.png"
+        
+    image_path = os.path.join(UPLOAD_DIR, safe_filename)
+    
+    try:
+        with open(image_path, "wb") as buffer:
+            shutil.copyfileobj(image.file, buffer)
+    except Exception as e:
+        print(f"Error saving image: {e}")
+        # If image save fails, we can still proceed with placeholder or return error
+        # but for now let's try to proceed to avoid total failure
+        safe_filename = "default.png"
     
     hashed_password = get_password_hash(password)
     new_user = {
         "name": name,
         "email": email,
         "password": hashed_password,
-        "image_url": f"/uploads/{image.filename}"
+        "image_url": f"/uploads/{safe_filename}"
     }
     users_collection.insert_one(new_user)
     
