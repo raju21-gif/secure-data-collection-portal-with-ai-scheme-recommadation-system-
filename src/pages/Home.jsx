@@ -34,7 +34,7 @@ const Home = () => {
         // Fetch Reviews for landing page display
         const fetchReviews = async () => {
             try {
-                const res = await fetch('http://127.0.0.1:8000/community/reviews');
+                const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/community/reviews`);
                 if (res.ok) {
                     const data = await res.json();
                     if (Array.isArray(data)) setReviews(data);
@@ -91,7 +91,7 @@ const Home = () => {
                             <Link to="/dashboard" className="flex items-center gap-3 bg-white/5 hover:bg-white/10 py-1.5 px-3 rounded-full border border-white/5 transition-all cursor-pointer">
                                 <div className="size-8 rounded-full overflow-hidden bg-primary/20 flex items-center justify-center border border-primary/30">
                                     {user.image_url ? (
-                                        <img src={`http://127.0.0.1:8000${user.image_url}`} alt={user.name} className="w-full h-full object-cover" />
+                                        <img src={`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}${user.image_url}`} alt={user.name} className="w-full h-full object-cover" />
                                     ) : (
                                         <span className="text-xs font-bold text-primary">{user.name?.charAt(0).toUpperCase()}</span>
                                     )}
@@ -235,7 +235,7 @@ const Home = () => {
                                 </div>
                                 <div className="w-16 h-16 rounded-full overflow-hidden bg-gradient-to-br from-primary/20 to-purple-500/20 flex items-center justify-center text-primary font-bold border-2 border-primary/30 mb-4 shadow-[0_0_15px_rgba(0,234,255,0.3)]">
                                     {review.user_image ? (
-                                        <img src={`http://127.0.0.1:8000${review.user_image}`} alt={review.user_name} className="w-full h-full object-cover" />
+                                        <img src={`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}${review.user_image}`} alt={review.user_name} className="w-full h-full object-cover" />
                                     ) : (
                                         <span className="text-2xl">{review.user_name?.charAt(0).toUpperCase()}</span>
                                     )}
