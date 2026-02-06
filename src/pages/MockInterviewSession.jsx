@@ -91,7 +91,7 @@ const MockInterviewSession = () => {
         setMessages([{ role: 'system', content: `Starting ${config.mode === 'practice' ? 'Practice' : 'Mock Interview'} for ${config.role} Role.` }]);
         setIsLoading(true);
         try {
-            const res = await axios.post('http://127.0.0.1:8000/interview/start', {
+            const res = await axios.post(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/interview/start`, {
                 role: config.role,
                 mode: 'full',
                 difficulty: 5 // Start at middle difficulty
@@ -118,7 +118,7 @@ const MockInterviewSession = () => {
         setIsLoading(true);
 
         try {
-            const res = await axios.post('http://127.0.0.1:8000/interview/submit', {
+            const res = await axios.post(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/interview/submit`, {
                 role: config.role,
                 question: currentQuestion,
                 answer,

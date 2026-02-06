@@ -114,8 +114,8 @@ const AdminPanel = () => {
             try {
                 const token = localStorage.getItem('token');
                 const [usageRes, statsRes] = await Promise.all([
-                    axios.get('http://127.0.0.1:8000/admin/analytics/usage', { headers: { Authorization: `Bearer ${token}` } }),
-                    axios.get('http://127.0.0.1:8000/admin/stats', { headers: { Authorization: `Bearer ${token}` } })
+                    axios.get(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/admin/analytics/usage`, { headers: { Authorization: `Bearer ${token}` } }),
+                    axios.get(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/admin/stats`, { headers: { Authorization: `Bearer ${token}` } })
                 ]);
                 setUsageData(usageRes.data);
                 setStats(statsRes.data);

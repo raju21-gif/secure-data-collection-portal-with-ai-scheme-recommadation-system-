@@ -21,7 +21,7 @@ const SkillGap = () => {
                 // Prepare list of skills
                 const skillsList = userProfile.skills.split(',').map(s => s.trim());
 
-                const response = await axios.post('http://127.0.0.1:8000/analyze-skill-gap', {
+                const response = await axios.post(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/analyze-skill-gap`, {
                     user_skills: skillsList,
                     target_role: userProfile.role
                 });

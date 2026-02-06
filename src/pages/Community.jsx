@@ -30,7 +30,7 @@ const Community = () => {
     const fetchReviews = async () => {
         try {
             console.log("Fetching reviews...");
-            const res = await fetch('http://127.0.0.1:8000/community/reviews');
+            const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/community/reviews`);
             console.log("Fetch reviews status:", res.status);
             if (res.ok) {
                 const data = await res.json();
@@ -51,7 +51,7 @@ const Community = () => {
 
     const fetchFeedback = async () => {
         try {
-            const res = await fetch('http://127.0.0.1:8000/community/feedback');
+            const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/community/feedback`);
             if (res.ok) {
                 const data = await res.json();
                 if (Array.isArray(data)) {
@@ -66,7 +66,7 @@ const Community = () => {
     const fetchChatMessages = async () => {
         try {
             // console.log("Fetching chat messages..."); // Commented out to reduce noise in polling
-            const res = await fetch('http://127.0.0.1:8000/community/chat');
+            const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/community/chat`);
             if (res.ok) {
                 const data = await res.json();
                 // console.log("Fetched chat data:", data);
@@ -107,7 +107,7 @@ const Community = () => {
             };
             console.log("Sending payload:", payload);
 
-            const res = await fetch('http://127.0.0.1:8000/community/reviews', {
+            const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/community/reviews`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
@@ -134,7 +134,7 @@ const Community = () => {
         if (!window.confirm("Are you sure you want to delete this review?")) return;
 
         try {
-            const res = await fetch(`http://127.0.0.1:8000/community/reviews/${reviewId}`, {
+            const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/community/reviews/${reviewId}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}` // If you use token auth
@@ -158,7 +158,7 @@ const Community = () => {
         e.preventDefault();
 
         try {
-            const res = await fetch('http://127.0.0.1:8000/community/feedback', {
+            const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/community/feedback`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -193,7 +193,7 @@ const Community = () => {
             };
             console.log("Chat payload:", payload);
 
-            const res = await fetch('http://127.0.0.1:8000/community/chat', {
+            const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/community/chat`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
@@ -292,7 +292,7 @@ const Community = () => {
                                             <div className="flex items-center gap-4">
                                                 <div className="w-12 h-12 rounded-full overflow-hidden bg-gradient-to-br from-primary/20 to-purple-500/20 flex items-center justify-center text-primary font-bold border border-white/10 shadow-inner">
                                                     {review.user_image ? (
-                                                        <img src={`http://127.0.0.1:8000${review.user_image}`} alt={review.user_name} className="w-full h-full object-cover" />
+                                                        <img src={`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}${review.user_image}`} alt={review.user_name} className="w-full h-full object-cover" />
                                                     ) : (
                                                         <span className="text-lg">{review.user_name?.charAt(0).toUpperCase()}</span>
                                                     )}
@@ -393,7 +393,7 @@ const Community = () => {
                                 <div key={idx} className={`flex items-end gap-2 ${msg.user_name === user?.name ? 'flex-row-reverse' : 'flex-row'}`}>
                                     <div className="w-8 h-8 rounded-full overflow-hidden bg-white/10 flex-shrink-0 border border-white/20">
                                         {msg.user_image ? (
-                                            <img src={`http://127.0.0.1:8000${msg.user_image}`} alt={msg.user_name} className="w-full h-full object-cover" />
+                                            <img src={`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}${msg.user_image}`} alt={msg.user_name} className="w-full h-full object-cover" />
                                         ) : (
                                             <div className="w-full h-full flex items-center justify-center text-xs font-bold text-slate-400">
                                                 {msg.user_name?.charAt(0).toUpperCase()}

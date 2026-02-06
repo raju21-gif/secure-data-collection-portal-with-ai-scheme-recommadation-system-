@@ -61,7 +61,7 @@ const Chatbot = () => {
         if (setTranscript) setTranscript('');
 
         try {
-            const response = await axios.post('http://127.0.0.1:8000/chat', {
+            const response = await axios.post(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/chat`, {
                 message: inputValue,
                 context: `The user is browsing the government scheme portal. The user has selected the language: ${language}. Please respond strictly in ${language}.`
             });

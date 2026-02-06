@@ -32,7 +32,7 @@ const Dashboard = () => {
                         <div className="size-32 rounded-full overflow-hidden border-4 border-primary/20 p-1 shadow-[0_0_30px_rgba(0,234,255,0.3)] group-hover:border-primary/50 transition-all duration-500">
                             <div className="w-full h-full rounded-full overflow-hidden bg-slate-800">
                                 {user.image_url ? (
-                                    <img src={`http://127.0.0.1:8000${user.image_url}`} alt={user.name} className="w-full h-full object-cover" />
+                                    <img src={`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}${user.image_url}`} alt={user.name} className="w-full h-full object-cover" />
                                 ) : (
                                     <div className="w-full h-full flex items-center justify-center bg-primary/10 text-primary">
                                         <User size={48} />

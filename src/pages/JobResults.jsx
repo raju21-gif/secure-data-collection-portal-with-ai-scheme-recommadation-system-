@@ -32,7 +32,7 @@ const JobResults = () => {
                 setDisplayedJobs(allJobs.slice(currentIndex, currentIndex + 6));
             } else if (userProfile) {
                 // Fetch new if no cache
-                const response = await axios.post('http://127.0.0.1:8000/recommend', userProfile);
+                const response = await axios.post(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/recommend`, userProfile);
                 allJobs = response.data.jobs || [];
 
                 // Save to cache
@@ -69,7 +69,7 @@ const JobResults = () => {
     const logActivity = async (portalName) => {
         if (!userProfile?.email) return;
         try {
-            await axios.post('http://127.0.0.1:8000/activity/log', {
+            await axios.post(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/activity/log`, {
                 user_email: userProfile.email,
                 action: "VISITED_JOB_PORTAL",
                 target: portalName

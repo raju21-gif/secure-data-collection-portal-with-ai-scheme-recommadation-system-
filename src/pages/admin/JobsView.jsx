@@ -14,10 +14,10 @@ const JobsView = () => {
             try {
                 const token = localStorage.getItem('token');
                 const [analyticsRes, inventoryRes] = await Promise.all([
-                    axios.get('http://127.0.0.1:8000/admin/analytics/jobs', {
+                    axios.get(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/admin/analytics/jobs`, {
                         headers: { Authorization: `Bearer ${token}` }
                     }),
-                    axios.get('http://127.0.0.1:8000/admin/inventory/jobs', {
+                    axios.get(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/admin/inventory/jobs`, {
                         headers: { Authorization: `Bearer ${token}` }
                     })
                 ]);
@@ -33,7 +33,7 @@ const JobsView = () => {
         const pollAnalytics = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.get('http://127.0.0.1:8000/admin/analytics/jobs', {
+                const response = await axios.get(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/admin/analytics/jobs`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setAnalytics(response.data);
@@ -49,7 +49,7 @@ const JobsView = () => {
 
     const logActivity = async (portalName) => {
         try {
-            await axios.post('http://127.0.0.1:8000/activity/log', {
+            await axios.post(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/activity/log`, {
                 user_email: "admin@freedy.ai",
                 action: "VISITED_JOB_PORTAL",
                 target: portalName
