@@ -63,7 +63,7 @@ const Login = () => {
         setMessage({ type: '', text: '' });
 
         const formDataToSend = new FormData();
-        formDataToSend.append('username', formData.email);
+        formDataToSend.append('username', formData.email.toLowerCase().trim());
         formDataToSend.append('password', formData.password);
 
         try {

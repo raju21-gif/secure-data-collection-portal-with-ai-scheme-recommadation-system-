@@ -84,7 +84,7 @@ const Register = () => {
 
         const formDataToSend = new FormData();
         formDataToSend.append('name', formData.name);
-        formDataToSend.append('email', formData.email);
+        formDataToSend.append('email', formData.email.toLowerCase().trim());
         formDataToSend.append('password', formData.password);
         formDataToSend.append('image', image);
 

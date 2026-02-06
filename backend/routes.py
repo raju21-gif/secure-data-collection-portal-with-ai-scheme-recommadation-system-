@@ -22,6 +22,7 @@ async def register(
     password: str = Form(...),
     image: UploadFile = File(...)
 ):
+    email = email.lower().strip()
     if users_collection.find_one({"email": email}):
         raise HTTPException(status_code=400, detail="Email already registered")
     
@@ -51,7 +52,8 @@ async def login(
     username: str = Form(...), # Frontend might send 'username' key for email
     password: str = Form(...)
 ):
-    # Case-insensitive search
+    username = username.lower().strip()
+    # Case-insensitive search (still using regex just in case database has unnormalized data)
     user = users_collection.find_one({"email": {"$regex": f"^{username}$", "$options": "i"}})
     if not user or not verify_password(password, user["password"]):
         raise HTTPException(
