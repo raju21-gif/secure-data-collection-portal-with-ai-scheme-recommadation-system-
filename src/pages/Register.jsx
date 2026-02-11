@@ -94,7 +94,17 @@ const Register = () => {
             setMessage({ type: 'success', text: response.data.message || 'Registration successful!' });
             setTimeout(() => navigate('/login'), 2000);
         } catch (error) {
-            const errorMsg = error.response?.data?.detail || 'Registration failed. Please try again.';
+            console.error('Registration error details:', error);
+            let errorMsg = 'Registration failed. Please try again.';
+
+            if (error.code === 'ERR_NETWORK') {
+                errorMsg = 'Cannot reach server. Please check your internet or VITE_API_URL setting.';
+            } else if (error.response?.status === 500) {
+                errorMsg = 'Server error. Database might be unreachable or image size too large.';
+            } else if (error.response?.data?.detail) {
+                errorMsg = error.response.data.detail;
+            }
+
             setMessage({ type: 'error', text: errorMsg });
         } finally {
             setLoading(false);
