@@ -94,8 +94,17 @@ const Login = () => {
             setTimeout(() => navigate(targetPath), 800);
 
         } catch (error) {
-            const errorMsg =
-                error.response?.data?.detail || 'Invalid email or password';
+            console.error('Login error:', error);
+            let errorMsg = 'Invalid email or password';
+
+            if (error.code === 'ERR_NETWORK') {
+                errorMsg = 'Server is taking too long to respond. Please check database connection.';
+            } else if (error.response?.status === 500) {
+                errorMsg = 'Server error. Database might be unreachable.';
+            } else if (error.response?.data?.detail) {
+                errorMsg = error.response.data.detail;
+            }
+
             setMessage({ type: 'error', text: errorMsg });
         } finally {
             setLoading(false);
