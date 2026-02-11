@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { MessageSquare, Send, X, Bot, User, Minimize2, Maximize2, Infinity, VolumeX, Volume2, MinusSquare, MicOff, Mic } from 'lucide-react';
+import { API_URL } from '../api/config';
 import * as Lucide from 'lucide-react';
 import axios from 'axios';
 import { useTextToSpeech } from '../hooks/useTextToSpeech';
@@ -61,7 +63,7 @@ const Chatbot = () => {
         if (setTranscript) setTranscript('');
 
         try {
-            const response = await axios.post(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/chat`, {
+            const response = await axios.post(`${API_URL}/chat`, {
                 message: inputValue,
                 context: `The user is browsing the government scheme portal. The user has selected the language: ${language}. Please respond strictly in ${language}.`
             });

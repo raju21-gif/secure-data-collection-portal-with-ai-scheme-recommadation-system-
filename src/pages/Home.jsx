@@ -3,7 +3,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useTextToSpeech } from '../hooks/useTextToSpeech';
 import { useVoice } from '../context/VoiceContext';
 import { useAuth } from '../context/AuthContext';
-import { LogIn, UserPlus, LayoutDashboard, LogOut } from 'lucide-react';
+import { Shield, Brain, Database, MessageCircle, ArrowRight, CheckCircle, Smartphone, Lock, Search } from 'lucide-react';
+import { API_URL } from '../api/config';
 import Chatbot from '../components/Chatbot';
 
 const Home = () => {
@@ -35,7 +36,7 @@ const Home = () => {
         // Fetch Reviews for landing page display
         const fetchReviews = async () => {
             try {
-                const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/community/reviews`);
+                const res = await fetch(`${API_URL}/community/reviews`);
                 if (res.ok) {
                     const data = await res.json();
                     if (Array.isArray(data)) setReviews(data);

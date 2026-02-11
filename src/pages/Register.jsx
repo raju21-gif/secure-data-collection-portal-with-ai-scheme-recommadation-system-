@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { User, Mail, Lock, Image, Eye, EyeOff, CheckCircle, AlertCircle, Upload } from 'lucide-react';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
+import { API_URL } from '../api/config';
 
 const Register = () => {
     const navigate = useNavigate();
