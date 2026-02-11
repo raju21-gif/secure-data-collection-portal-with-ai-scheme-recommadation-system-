@@ -1,5 +1,8 @@
-from pymongo import MongoClient
 import os
+from pymongo import MongoClient
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Use local MongoDB - change to Atlas URL if needed
 MONGO_URL = os.getenv("MONGO_URL", "mongodb://localhost:27017")

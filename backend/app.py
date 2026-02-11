@@ -1,3 +1,6 @@
+from dotenv import load_dotenv
+load_dotenv()
+
 from fastapi import FastAPI, HTTPException, Request, Query
 from fastapi.staticfiles import StaticFiles
 from routes import router
@@ -7,14 +10,11 @@ from pydantic import BaseModel
 import pandas as pd
 import os
 import requests
-from dotenv import load_dotenv
 
 # Import our new modules
 from ai_engine import get_ai_response
 from whatsapp_twilio import handle_twilio_message
 
-# Load environment variables
-load_dotenv()
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
 
 app = FastAPI()
