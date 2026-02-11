@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { MessageSquare, Send, X, Bot, User, Minimize2, Maximize2, Infinity, VolumeX, Volume2, MinusSquare, MicOff, Mic } from 'lucide-react';
+import { MessageSquare, Send, X, Bot, User, Minimize2, Maximize2, VolumeX, Volume2, MinusSquare, MicOff, Mic } from 'lucide-react';
 import { API_URL } from '../api/config';
 import * as Lucide from 'lucide-react';
 import axios from 'axios';
