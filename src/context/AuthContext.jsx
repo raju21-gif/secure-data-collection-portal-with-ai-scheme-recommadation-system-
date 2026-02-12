@@ -18,6 +18,12 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const checkAuth = async () => {
             const token = localStorage.getItem('token');
+
+            // Safety timeout: ensure loading ends eventually even if fetch hangs
+            const safetyTimeout = setTimeout(() => {
+                setLoading(false);
+            }, 3000);
+
             if (token) {
                 try {
                     // Verify token and get fresh user data
@@ -37,11 +43,9 @@ export const AuthProvider = ({ children }) => {
                     }
                 } catch (error) {
                     console.error("Auth check failed:", error);
-                    // Keep existing user from local storage as fallback or logout? 
-                    // Safer to maybe logout or just do nothing if network error.
-                    // For now, let's keep the localStorage user if network fails, but if server says 401, we logout.
                 }
             }
+            clearTimeout(safetyTimeout);
             setLoading(false);
         };
 

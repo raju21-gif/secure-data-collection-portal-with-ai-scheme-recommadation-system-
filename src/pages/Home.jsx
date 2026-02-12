@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useTextToSpeech } from '../hooks/useTextToSpeech';
 import { useVoice } from '../context/VoiceContext';
 import { useAuth } from '../context/AuthContext';
-import { Shield, Brain, Database, MessageCircle, ArrowRight, CheckCircle, Smartphone, Lock, Search } from 'lucide-react';
+import { Shield, Brain, Database, MessageCircle, ArrowRight, CheckCircle, Smartphone, Lock, Search, LayoutDashboard, LogOut, LogIn, UserPlus } from 'lucide-react';
 import { API_URL } from '../api/config';
 import Chatbot from '../components/Chatbot';
 
