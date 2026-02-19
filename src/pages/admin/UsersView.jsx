@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { API_URL } from '../../api/config';
 import { User, Mail, Shield, X, Search, MoreVertical } from 'lucide-react';
 
 const UsersView = () => {
@@ -16,7 +16,7 @@ const UsersView = () => {
                     setLoading(false);
                     return;
                 }
-                const response = await axios.get(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/admin/users`, {
+                const response = await axios.get(`${import.meta.env.VITE_API_URL || '${API_URL}'}/admin/users`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 // Ensure response data is an array before setting state
@@ -72,7 +72,7 @@ const UsersView = () => {
                             <div className="flex items-center gap-4">
                                 <div className="relative">
                                     {user.image_url ? (
-                                        <img src={`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}${user.image_url}`} alt={user.name || 'User'} className="w-12 h-12 rounded-full object-cover border border-slate-700 group-hover:border-emerald-500/50" />
+                                        <img src={`${import.meta.env.VITE_API_URL || '${API_URL}'}${user.image_url}`} alt={user.name || 'User'} className="w-12 h-12 rounded-full object-cover border border-slate-700 group-hover:border-emerald-500/50" />
                                     ) : (
                                         <div className="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center text-slate-500 border border-slate-700">
                                             <User size={24} />

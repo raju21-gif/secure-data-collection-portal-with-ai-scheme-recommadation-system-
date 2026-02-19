@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { X, Mic, MicOff, Send, User, Cpu, ArrowLeft, Settings, Volume2, Upload, Code, Play } from 'lucide-react';
-import axios from 'axios';
+import { API_URL } from '../api/config';
 import Editor from '@monaco-editor/react';
 
 const MockInterviewSession = () => {
@@ -91,7 +91,7 @@ const MockInterviewSession = () => {
         setMessages([{ role: 'system', content: `Starting ${config.mode === 'practice' ? 'Practice' : 'Mock Interview'} for ${config.role} Role.` }]);
         setIsLoading(true);
         try {
-            const res = await axios.post(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/interview/start`, {
+            const res = await axios.post(`${import.meta.env.VITE_API_URL || '${API_URL}'}/interview/start`, {
                 role: config.role,
                 mode: 'full',
                 difficulty: 5 // Start at middle difficulty

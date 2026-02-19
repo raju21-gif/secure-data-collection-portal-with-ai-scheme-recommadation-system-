@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useVoice } from '../context/VoiceContext';
 import { useAuth } from '../context/AuthContext';
-import { ArrowLeft, Home } from 'lucide-react';
+import { API_URL } from '../api/config';
 
 const Schemes = () => {
     const navigate = useNavigate();
@@ -36,7 +36,7 @@ const Schemes = () => {
                     const dataToSend = state || formData || {};
 
                     // Call backend (ensure URL is correct)
-                    const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/recommend`, {
+                    const response = await fetch(`${import.meta.env.VITE_API_URL || '${API_URL}'}/recommend`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(dataToSend)

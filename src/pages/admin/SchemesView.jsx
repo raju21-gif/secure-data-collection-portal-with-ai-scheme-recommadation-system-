@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { API_URL } from '../../api/config';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 import { Table, Layers, TrendingUp, Search, Filter } from 'lucide-react';
 
@@ -14,10 +14,10 @@ const SchemesView = () => {
             try {
                 const token = localStorage.getItem('token');
                 const [analyticsRes, inventoryRes] = await Promise.all([
-                    axios.get(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/admin/analytics/schemes`, {
+                    axios.get(`${import.meta.env.VITE_API_URL || '${API_URL}'}/admin/analytics/schemes`, {
                         headers: { Authorization: `Bearer ${token}` }
                     }),
-                    axios.get(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/admin/inventory/schemes`, {
+                    axios.get(`${import.meta.env.VITE_API_URL || '${API_URL}'}/admin/inventory/schemes`, {
                         headers: { Authorization: `Bearer ${token}` }
                     })
                 ]);
@@ -33,7 +33,7 @@ const SchemesView = () => {
         const pollAnalytics = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.get(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/admin/analytics/schemes`, {
+                const response = await axios.get(`${import.meta.env.VITE_API_URL || '${API_URL}'}/admin/analytics/schemes`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setAnalytics(response.data);
@@ -56,7 +56,7 @@ const SchemesView = () => {
 
     const logActivity = async (schemeName) => {
         try {
-            await axios.post(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/activity/log`, {
+            await axios.post(`${import.meta.env.VITE_API_URL || '${API_URL}'}/activity/log`, {
                 user_email: "admin@freedy.ai",
                 action: "VIEWED_DETAILS",
                 target: schemeName

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { API_URL } from '../../api/config';
 import {
     AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
     LineChart, Line, BarChart, Bar, Legend
@@ -114,8 +114,8 @@ const AdminPanel = () => {
             try {
                 const token = localStorage.getItem('token');
                 const [usageRes, statsRes] = await Promise.all([
-                    axios.get(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/admin/analytics/usage`, { headers: { Authorization: `Bearer ${token}` } }),
-                    axios.get(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/admin/stats`, { headers: { Authorization: `Bearer ${token}` } })
+                    axios.get(`${import.meta.env.VITE_API_URL || '${API_URL}'}/admin/analytics/usage`, { headers: { Authorization: `Bearer ${token}` } }),
+                    axios.get(`${import.meta.env.VITE_API_URL || '${API_URL}'}/admin/stats`, { headers: { Authorization: `Bearer ${token}` } })
                 ]);
                 setUsageData(usageRes.data);
                 setStats(statsRes.data);
