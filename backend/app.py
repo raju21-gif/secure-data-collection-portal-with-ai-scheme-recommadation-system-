@@ -28,7 +28,12 @@ app.include_router(router)
 # Enable CORS for React frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "http://localhost:5173",
+        "https://secure-data-collection-git-f9f623-cybertechs-projects-33d71ecd.vercel.app",
+        "https://secure-data-collection-portal-with-ai-scheme-recommadation-system.vercel.app",
+        "https://secure-data-collection-portal-with-ai.onrender.com"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

@@ -1,12 +1,15 @@
 import os
 from pymongo import MongoClient
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def check_mongo():
     mongo_url = os.getenv("MONGO_URL", "mongodb://localhost:27017")
     print(f"Testing connection to: {mongo_url}")
     
     try:
-        client = MongoClient(mongo_url, serverSelectionTimeoutMS=2000)
+        client = MongoClient(mongo_url, serverSelectionTimeoutMS=5000)
         # Force a connection check
         client.admin.command('ping')
         print("SUCCESS: Connected to MongoDB!")
